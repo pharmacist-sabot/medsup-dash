@@ -1,0 +1,41 @@
+/* src/assets/main.css */
+@import 'tailwindcss';
+
+@theme {
+  --font-family-base: 'Prompt', sans-serif;
+  --color-brand: #d190ff;
+  --color-brand-dark: #5e2b83;
+  --color-bg-light: #f4b1fd;
+  --color-pastel-purple: #fdeaff;
+
+  /* Custom Palette for Cards */
+  --color-q1: #ffe7ff; /* Card background color */
+}
+
+/* Base Styles setup */
+:root {
+  font-family: var(--font-family-base);
+  line-height: 1.5;
+  font-weight: 400;
+
+  /* Global Background Gradient */
+  background-color: var(--color-bg-light);
+  background-image: linear-gradient(135deg, var(--color-bg-light) 0%, var(--color-pastel-purple) 100%);
+  background-attachment: fixed;
+}
+
+body {
+  @apply min-h-screen flex flex-col text-slate-800;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #d190ff;
+  border-radius: 4px;
+}

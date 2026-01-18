@@ -1,3 +1,9 @@
+## [1.0.2](https://github.com/pharmacist-sabot/medsup-dash/compare/v1.0.1...v1.0.2) (2026-01-18)
+
+### ♻️ Refactoring
+
+* **dashboard:** enhance type safety for KpiCard icon prop ([#1](https://github.com/pharmacist-sabot/medsup-dash/issues/1)) ([64b7bec](https://github.com/pharmacist-sabot/medsup-dash/commit/64b7becb8699a55de41e13563f48304c9aa40caa))
+
 ## [1.0.1](https://github.com/pharmacist-sabot/medsup-dash/compare/v1.0.0...v1.0.1) (2025-12-24)
 
 ### 📝 Documentation

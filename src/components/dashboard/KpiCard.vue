@@ -1,10 +1,12 @@
-<!-- src/components/dashboard/KPICard.vue -->
+<!-- src/components/dashboard/KpiCard.vue -->
 <script setup lang="ts">
+import type { Component } from 'vue';
+
 defineProps<{
   title: string;
   value: string;
   subValue?: string;
-  icon?: any; // Lucide Icon Type
+  icon?: Component; // Lucide Icon Type
   colorClass?: string;
 }>();
 </script>

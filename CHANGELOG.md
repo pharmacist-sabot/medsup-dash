@@ -1,3 +1,9 @@
+## [1.0.3](https://github.com/pharmacist-sabot/medsup-dash/compare/v1.0.2...v1.0.3) (2026-03-21)
+
+### 📝 Documentation
+
+* update README formatting and section headings ([766c609](https://github.com/pharmacist-sabot/medsup-dash/commit/766c609c206bc3f08c4557556f37bbf91db0187c))
+
 ## [1.0.2](https://github.com/pharmacist-sabot/medsup-dash/compare/v1.0.1...v1.0.2) (2026-01-18)
 
 ### ♻️ Refactoring

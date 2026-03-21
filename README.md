@@ -23,7 +23,7 @@
 
 **MedSup Dash** is a modern, high-performance dashboard application designed for medical supply management. Built with the latest web technologies, it provides a seamless and responsive user experience for tracking key performance indicators (KPIs), visualizing data, and managing inventory.
 
-## 🚀 Tech Stack
+## Tech Stack
 
 This project leverages a cutting-edge stack to ensure speed, scalability, and developer experience:
 
@@ -37,16 +37,16 @@ This project leverages a cutting-edge stack to ensure speed, scalability, and de
 - **Testing:** [Vitest](https://vitest.dev/)
 - **Linting:** [ESLint](https://eslint.org/) (with Antfu config)
 
-## ✨ Key Features
+## Key Features
 
-- **🔐 Secure Authentication**: Robust login and session management powered by Supabase Auth.
-- **📊 Interactive Dashboard**: Real-time data visualization with dynamic charts and graphs.
-- **📈 KPI Tracking**: specialized KPI cards for monitoring critical metrics at a glance.
-- **📱 Fully Responsive**: Mobile-first design ensuring perfect usability across all devices.
-- **⚡ Blazing Fast**: Optimized build and HMR (Hot Module Replacement) with Vite.
-- **🛡️ Type Safe**: Full TypeScript support for reliable and maintainable code.
+- **Secure Authentication**: Robust login and session management powered by Supabase Auth.
+- **Interactive Dashboard**: Real-time data visualization with dynamic charts and graphs.
+- **KPI Tracking**: specialized KPI cards for monitoring critical metrics at a glance.
+- **Fully Responsive**: Mobile-first design ensuring perfect usability across all devices.
+- **Blazing Fast**: Optimized build and HMR (Hot Module Replacement) with Vite.
+- **Type Safe**: Full TypeScript support for reliable and maintainable code.
 
-## 🛠️ Getting Started
+## Getting Started
 
 Follow these steps to set up the project locally.
 
@@ -97,7 +97,7 @@ Follow these steps to set up the project locally.
 
    Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-## 📜 Scripts
+## Scripts
 
 | Script          | Description                            |
 | :-------------- | :------------------------------------- |
@@ -109,7 +109,7 @@ Follow these steps to set up the project locally.
 | `test:unit`     | Run unit tests with Vitest             |
 | `test:coverage` | Run tests and generate coverage report |
 
-## 📂 Project Structure
+## Project Structure
 
 ```text
 medsup-dash/
@@ -134,7 +134,7 @@ medsup-dash/
 └── vite.config.ts      # Vite configuration
 ```
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
@@ -144,6 +144,6 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📄 License
+## License
 
 This project is licensed under the [MIT License](LICENSE).

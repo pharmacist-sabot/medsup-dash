@@ -21,7 +21,7 @@ describe('baseButton Component', () => {
       },
     });
 
-    expect(wrapper.classes()).toContain('bg-red-500');
+    expect(wrapper.classes()).toContain('bg-[#fa520f]');
   });
 
   it('emits click event when clicked', async () => {

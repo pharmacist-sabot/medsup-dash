@@ -24,28 +24,39 @@ const years = Array.from(
 </script>
 
 <template>
-  <div class="space-y-8 pb-12">
+  <div class="space-y-8 pb-16">
     <!-- Header Section -->
-    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white/60 backdrop-blur-sm p-6 rounded-2xl border border-white/50 shadow-sm">
+    <div
+      class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-cream border border-block-gold p-6"
+      style="box-shadow: rgba(127,99,21,0.10) -8px 16px 39px, rgba(127,99,21,0.06) -33px 64px 72px;"
+    >
       <div class="flex items-center gap-4">
-        <div class="p-3 bg-brand/10 rounded-xl text-brand-dark">
-          <CalendarRange class="w-8 h-8" />
+        <!-- Icon block -->
+        <div
+          class="w-12 h-12 flex items-center justify-center shrink-0"
+          style="background: linear-gradient(135deg, #ffa110, #fa520f);"
+        >
+          <CalendarRange class="w-6 h-6 text-white" />
         </div>
+
         <div>
-          <h1 class="text-2xl font-bold text-gray-800">
+          <h1 class="text-xl text-[#1f1f1f] leading-snug">
             Dashboard รายงานมูลค่ายาสนับสนุน
           </h1>
-          <p class="text-gray-600 text-sm">
+          <p class="text-sm text-[#1f1f1f]/50 mt-0.5">
             ระบบติดตามงบประมาณสนับสนุนทางการแพทย์
           </p>
         </div>
       </div>
 
-      <div class="flex items-center gap-3">
-        <label class="text-sm font-medium text-gray-700">ปีงบประมาณ:</label>
+      <!-- Fiscal Year Selector -->
+      <div class="flex items-center gap-3 shrink-0">
+        <label class="text-xs text-[#1f1f1f]/50 uppercase tracking-wider whitespace-nowrap">
+          ปีงบประมาณ
+        </label>
         <select
           v-model="store.selectedFiscalYear"
-          class="px-4 py-2 bg-white border border-purple-200 rounded-xl text-sm font-medium text-brand-dark focus:ring-2 focus:ring-brand focus:border-brand outline-none shadow-sm cursor-pointer hover:border-brand transition-colors"
+          class="px-4 py-2 bg-warm-ivory border border-block-gold rounded-none text-sm text-[#1f1f1f] outline-none focus:border-[#fa520f] focus:ring-1 focus:ring-[#fa520f] cursor-pointer transition-colors duration-200"
           @change="store.fetchByFiscalYear(store.selectedFiscalYear)"
         >
           <option v-for="y in years" :key="y" :value="y">
@@ -55,10 +66,10 @@ const years = Array.from(
       </div>
     </div>
 
-    <!-- Loading -->
-    <div v-if="store.loading" class="h-96 flex flex-col items-center justify-center text-brand-dark/60">
-      <Loader2 class="w-10 h-10 animate-spin mb-4" />
-      <p class="font-medium">
+    <!-- Loading State -->
+    <div v-if="store.loading" class="h-80 flex flex-col items-center justify-center text-[#1f1f1f]/40">
+      <Loader2 class="w-8 h-8 animate-spin mb-4 text-sunshine-700" />
+      <p class="text-sm tracking-wide">
         กำลังประมวลผลข้อมูล...
       </p>
     </div>
@@ -67,123 +78,157 @@ const years = Array.from(
       <!-- KPI Cards Row -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <KpiCard
-          title="มูลค่ารวมทั้งปี"
-          :value="formatCurrency(store.totalValue)"
-          :icon="Coins"
-          color-class="bg-fuchsia-100 text-fuchsia-600"
+          title="มูลค่ารวมทั้งปี" :value="formatCurrency(store.totalValue)" :icon="Coins"
+          color-class="bg-[#ffd06a] text-[#1f1f1f]"
         />
         <KpiCard
-          title="จำนวนรายการทั้งหมด"
-          :value="store.totalCount.toLocaleString()"
-          sub-value="Transactions"
-          :icon="Receipt"
-          color-class="bg-violet-100 text-violet-600"
+          title="จำนวนรายการทั้งหมด" :value="store.totalCount.toLocaleString()" sub-value="Transactions"
+          :icon="Receipt" color-class="bg-[#ffb83e] text-[#1f1f1f]"
         />
         <KpiCard
-          title="มูลค่าเฉลี่ยต่อใบยา"
-          :value="formatCurrency(store.averageValue)"
-          :icon="Calculator"
-          color-class="bg-pink-100 text-pink-600"
+          title="มูลค่าเฉลี่ยต่อใบยา" :value="formatCurrency(store.averageValue)" :icon="Calculator"
+          color-class="bg-[#ffe295] text-[#fa520f]"
         />
       </div>
 
       <!-- Quarterly Report Section -->
-      <div class="bg-white/80 backdrop-blur rounded-2xl border border-purple-100 shadow-sm p-6">
-        <h3 class="text-lg font-bold text-gray-800 mb-6 flex items-center gap-2">
-          <span class="w-1.5 h-6 bg-brand rounded-full" />
-          สรุปรายไตรมาส (Quarterly Report)
-        </h3>
+      <div
+        class="bg-cream border `border-block-gold"
+        style="box-shadow: rgba(127,99,21,0.10) -8px 16px 39px, rgba(127,99,21,0.06) -33px 64px 72px;"
+      >
+        <!-- Section Header -->
+        <div class="px-6 py-5 border-b border-block-gold flex items-center gap-3">
+          <span class="w-1 h-5 bg-[#fa520f] shrink-0" />
+          <h3 class="text-base text-[#1f1f1f]">
+            สรุปรายไตรมาส
+            <span class="text-[#1f1f1f]/40 text-sm ml-1">Quarterly Report</span>
+          </h3>
+        </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <!-- Q1 -->
-          <div class="bg-purple-50/50 p-5 rounded-xl border border-purple-100 hover:border-brand/30 transition-all hover:-translate-y-1">
-            <p class="text-sm text-gray-500 mb-1">
-              ไตรมาส 1 (ต.ค.-ธ.ค.)
+          <div
+            class="bg-warm-ivory border border-block-gold p-5 hover:border-sunshine-700 hover:-translate-y-0.5 transition-all duration-200"
+          >
+            <p class="text-xs text-[#1f1f1f]/50 mb-2 uppercase tracking-wider">
+              ไตรมาส 1
             </p>
-            <h4 class="text-xl font-bold text-brand-dark">
+            <p class="text-[11px] text-[#1f1f1f]/40 mb-3">
+              ต.ค. – ธ.ค.
+            </p>
+            <div class="text-xl text-[#1f1f1f]">
               {{ formatCurrency(store.quarterlySummary.q1) }}
-            </h4>
+            </div>
           </div>
+
           <!-- Q2 -->
-          <div class="bg-purple-50/50 p-5 rounded-xl border border-purple-100 hover:border-brand/30 transition-all hover:-translate-y-1">
-            <p class="text-sm text-gray-500 mb-1">
-              ไตรมาส 2 (ม.ค.-มี.ค.)
+          <div
+            class="bg-warm-ivory border border-block-gold p-5 hover:border-sunshine-700 hover:-translate-y-0.5 transition-all duration-200"
+          >
+            <p class="text-xs text-[#1f1f1f]/50 mb-2 uppercase tracking-wider">
+              ไตรมาส 2
             </p>
-            <h4 class="text-xl font-bold text-brand-dark">
+            <p class="text-[11px] text-[#1f1f1f]/40 mb-3">
+              ม.ค. – มี.ค.
+            </p>
+            <div class="text-xl text-[#1f1f1f]">
               {{ formatCurrency(store.quarterlySummary.q2) }}
-            </h4>
+            </div>
           </div>
+
           <!-- Q3 -->
-          <div class="bg-purple-50/50 p-5 rounded-xl border border-purple-100 hover:border-brand/30 transition-all hover:-translate-y-1">
-            <p class="text-sm text-gray-500 mb-1">
-              ไตรมาส 3 (เม.ย.-มิ.ย.)
+          <div
+            class="bg-warm-ivory border border-block-gold p-5 hover:border-sunshine-700 hover:-translate-y-0.5 transition-all duration-200"
+          >
+            <p class="text-xs text-[#1f1f1f]/50 mb-2 uppercase tracking-wider">
+              ไตรมาส 3
             </p>
-            <h4 class="text-xl font-bold text-brand-dark">
+            <p class="text-[11px] text-[#1f1f1f]/40 mb-3">
+              เม.ย. – มิ.ย.
+            </p>
+            <div class="text-xl text-[#1f1f1f]">
               {{ formatCurrency(store.quarterlySummary.q3) }}
-            </h4>
+            </div>
           </div>
+
           <!-- Q4 -->
-          <div class="bg-purple-50/50 p-5 rounded-xl border border-purple-100 hover:border-brand/30 transition-all hover:-translate-y-1">
-            <p class="text-sm text-gray-500 mb-1">
-              ไตรมาส 4 (ก.ค.-ก.ย.)
+          <div
+            class="bg-warm-ivory border border-block-gold p-5 hover:border-sunshine-700 hover:-translate-y-0.5 transition-all duration-200"
+          >
+            <p class="text-xs text-[#1f1f1f]/50 mb-2 uppercase tracking-wider">
+              ไตรมาส 4
             </p>
-            <h4 class="text-xl font-bold text-brand-dark">
+            <p class="text-[11px] text-[#1f1f1f]/40 mb-3">
+              ก.ค. – ก.ย.
+            </p>
+            <div class="text-xl text-[#1f1f1f]">
               {{ formatCurrency(store.quarterlySummary.q4) }}
-            </h4>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Table Section -->
-      <div class="bg-white/80 backdrop-blur rounded-2xl border border-purple-100 shadow-sm overflow-hidden">
-        <div class="px-6 py-5 border-b border-purple-50 flex justify-between items-center">
-          <h3 class="text-lg font-bold text-gray-800 flex items-center gap-2">
-            <span class="w-1.5 h-6 bg-brand rounded-full" />
+      <!-- Recent Transactions Table -->
+      <div
+        class="bg-cream border border-block-gold overflow-hidden"
+        style="box-shadow: rgba(127,99,21,0.10) -8px 16px 39px, rgba(127,99,21,0.06) -33px 64px 72px;"
+      >
+        <!-- Section Header -->
+        <div class="px-6 py-5 border-b border-block-gold flex items-center gap-3">
+          <span class="w-1 h-5 bg-[#fa520f] shrink-0" />
+          <h3 class="text-base text-[#1f1f1f]">
             รายการล่าสุด
           </h3>
         </div>
+
         <div class="overflow-x-auto">
           <table class="w-full text-sm text-left">
-            <thead class="bg-purple-50/50 text-gray-600 font-medium">
+            <thead class="bg-block-gold text-[#1f1f1f]/60">
               <tr>
-                <th class="px-6 py-4">
+                <th class="px-6 py-4 text-xs uppercase tracking-wider font-normal">
                   วันที่
                 </th>
-                <th class="px-6 py-4">
+                <th class="px-6 py-4 text-xs uppercase tracking-wider font-normal">
                   เลขที่บิล
                 </th>
-                <th class="px-6 py-4">
+                <th class="px-6 py-4 text-xs uppercase tracking-wider font-normal">
                   ประเภทยา
                 </th>
-                <th class="px-6 py-4 text-right">
+                <th class="px-6 py-4 text-xs uppercase tracking-wider font-normal text-right">
                   มูลค่า (บาท)
                 </th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-purple-50">
+            <tbody class="divide-y divide-block-gold">
               <tr
-                v-for="item in store.recentTransactions"
-                :key="item.id"
-                class="hover:bg-purple-50/30 transition-colors"
+                v-for="item in store.recentTransactions" :key="item.id"
+                class="hover:bg-warm-ivory transition-colors duration-150"
               >
-                <td class="px-6 py-4 text-gray-600">
+                <td class="px-6 py-4 text-[#1f1f1f]/60">
                   {{ new Date(item.transaction_date).toLocaleDateString('th-TH') }}
                 </td>
-                <td class="px-6 py-4 font-mono text-brand-dark font-medium">
+                <td class="px-6 py-4 font-mono text-[#1f1f1f]">
                   {{ item.bill_number || '-' }}
                 </td>
                 <td class="px-6 py-4">
-                  <span class="px-3 py-1 rounded-full bg-white border border-purple-100 text-xs font-medium text-purple-600 shadow-sm">
+                  <span class="px-3 py-1 bg-warm-ivory border border-block-gold text-xs text-[#fa520f]">
                     {{ item.drug_type }}
                   </span>
                 </td>
-                <td class="px-6 py-4 text-right font-bold text-gray-700">
+                <td class="px-6 py-4 text-right text-[#1f1f1f]">
                   {{ formatCurrency(item.drug_value) }}
                 </td>
               </tr>
+
+              <!-- Empty State -->
               <tr v-if="store.recentTransactions.length === 0">
-                <td colspan="4" class="px-6 py-12 text-center text-gray-400 bg-white">
-                  ไม่พบข้อมูลรายการในปีงบประมาณนี้
+                <td colspan="4" class="px-6 py-16 text-center bg-warm-ivory">
+                  <div class="flex flex-col items-center gap-3 text-[#1f1f1f]/30">
+                    <Receipt class="w-8 h-8" />
+                    <p class="text-sm">
+                      ไม่พบข้อมูลรายการในปีงบประมาณนี้
+                    </p>
+                  </div>
                 </td>
               </tr>
             </tbody>

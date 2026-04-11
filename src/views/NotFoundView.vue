@@ -6,24 +6,31 @@ import BaseButton from '@/components/common/BaseButton.vue';
 </script>
 
 <template>
-  <div class="text-center px-4">
-    <h1 class="text-9xl font-black text-gray-200">
+  <div class="text-center px-4 py-16">
+    <!-- Large 404 display -->
+    <div class="text-[120px] leading-none text-block-gold select-none" style="letter-spacing: -4px;">
       404
-    </h1>
+    </div>
 
-    <div class="-mt-12 relative z-10 space-y-6">
-      <h2 class="text-3xl font-bold text-gray-900">
+    <!-- Mistral block gradient accent bar -->
+    <div class="h-1 w-24 mx-auto my-6" style="background: linear-gradient(90deg, #ffd900, #ffa110, #fa520f);" />
+
+    <div class="space-y-4 max-w-md mx-auto">
+      <h2 class="text-2xl text-[#1f1f1f]">
         Page Not Found
       </h2>
-      <p class="text-gray-500 max-w-md mx-auto">
-        Oops! The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.
+      <p class="text-sm text-[#1f1f1f]/50 leading-relaxed">
+        Oops! The page you are looking for might have been removed,
+        had its name changed, or is temporarily unavailable.
       </p>
 
-      <RouterLink v-slot="{ navigate }" to="/" custom>
-        <BaseButton variant="primary" @click="navigate">
-          Back to Home
-        </BaseButton>
-      </RouterLink>
+      <div class="pt-4">
+        <RouterLink v-slot="{ navigate }" to="/" custom>
+          <BaseButton variant="primary" @click="navigate">
+            Back to Home
+          </BaseButton>
+        </RouterLink>
+      </div>
     </div>
   </div>
 </template>

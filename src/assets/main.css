@@ -2,40 +2,93 @@
 @import 'tailwindcss';
 
 @theme {
-  --font-family-base: 'Prompt', sans-serif;
-  --color-brand: #d190ff;
-  --color-brand-dark: #5e2b83;
-  --color-bg-light: #f4b1fd;
-  --color-pastel-purple: #fdeaff;
+  --font-family-base:
+    'Prompt', Arial, ui-sans-serif, system-ui, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji';
 
-  /* Custom Palette for Cards */
-  --color-q1: #ffe7ff; /* Card background color */
+  /* === Mistral Brand Colors === */
+  --color-mistral-orange: #fa520f;
+  --color-mistral-flame: #fb6424;
+  --color-block-orange: #ff8105;
+
+  /* === Sunshine / Gradient Stops === */
+  --color-bright-yellow: #ffd900;
+  --color-block-gold: #ffe295;
+  --color-sunshine-700: #ffa110;
+  --color-sunshine-500: #ffb83e;
+  --color-sunshine-300: #ffd06a;
+
+  /* === Surface & Neutrals === */
+  --color-warm-ivory: #fffaeb;
+  --color-cream: #fff0c2;
+  --color-mistral-black: #1f1f1f;
+
+  /* === Functional Accents === */
+  --color-accent-orange: hsl(17, 96%, 52%);
+  --color-input-border: hsl(240, 5.9%, 90%);
+
+  /* === Legacy Compatibility (used by existing Tailwind classes) === */
+  --color-brand: #fa520f;
+  --color-brand-hover: #fb6424;
+  --color-brand-dark: #1f1f1f;
 }
 
-/* Base Styles setup */
+/* ========================================
+   Base Styles
+   ======================================== */
 :root {
   font-family: var(--font-family-base);
   line-height: 1.5;
   font-weight: 400;
-
-  /* Global Background Gradient */
-  background-color: var(--color-bg-light);
-  background-image: linear-gradient(135deg, var(--color-bg-light) 0%, var(--color-pastel-purple) 100%);
-  background-attachment: fixed;
+  background-color: #fffaeb;
 }
 
 body {
-  @apply min-h-screen flex flex-col text-slate-800;
+  @apply min-h-screen flex flex-col;
+  color: #1f1f1f;
 }
 
-/* Custom Scrollbar */
+/* ========================================
+   Golden Shadow Utility
+   ======================================== */
+@utility shadow-golden {
+  box-shadow:
+    rgba(127, 99, 21, 0.12) -8px 16px 39px,
+    rgba(127, 99, 21, 0.1) -33px 64px 72px,
+    rgba(127, 99, 21, 0.06) -73px 144px 97px,
+    rgba(127, 99, 21, 0.03) -120px 240px 160px,
+    rgba(127, 99, 21, 0.01) -200px 400px 280px;
+}
+
+@utility shadow-golden-sm {
+  box-shadow:
+    rgba(127, 99, 21, 0.1) -4px 8px 20px,
+    rgba(127, 99, 21, 0.06) -16px 32px 40px;
+}
+
+/* ========================================
+   Mistral Block Gradient Utility
+   ======================================== */
+@utility gradient-mistral {
+  background: linear-gradient(90deg, #ffd900, #ffe295, #ffa110, #ff8105, #fb6424, #fa520f);
+}
+
+/* ========================================
+   Custom Scrollbar — Golden theme
+   ======================================== */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
+
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: #fffaeb;
 }
+
 ::-webkit-scrollbar-thumb {
-  background: #d190ff;
-  border-radius: 4px;
+  background: #ffa110;
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #fa520f;
 }

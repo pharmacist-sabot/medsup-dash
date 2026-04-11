@@ -93,11 +93,11 @@ const years = Array.from(
 
       <!-- Quarterly Report Section -->
       <div
-        class="bg-cream border `border-block-gold"
+        class="bg-cream"
         style="box-shadow: rgba(127,99,21,0.10) -8px 16px 39px, rgba(127,99,21,0.06) -33px 64px 72px;"
       >
         <!-- Section Header -->
-        <div class="px-6 py-5 border-b border-block-gold flex items-center gap-3">
+        <div class="px-6 py-5 flex items-center gap-3">
           <span class="w-1 h-5 bg-[#fa520f] shrink-0" />
           <h3 class="text-base text-[#1f1f1f]">
             สรุปรายไตรมาส
@@ -108,7 +108,7 @@ const years = Array.from(
         <div class="p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <!-- Q1 -->
           <div
-            class="bg-warm-ivory border border-block-gold p-5 hover:border-sunshine-700 hover:-translate-y-0.5 transition-all duration-200"
+            class="bg-warm-ivory p-5 hover:-translate-y-0.5 transition-all duration-200"
           >
             <p class="text-xs text-[#1f1f1f]/50 mb-2 uppercase tracking-wider">
               ไตรมาส 1
@@ -123,7 +123,7 @@ const years = Array.from(
 
           <!-- Q2 -->
           <div
-            class="bg-warm-ivory border border-block-gold p-5 hover:border-sunshine-700 hover:-translate-y-0.5 transition-all duration-200"
+            class="bg-warm-ivory p-5 hover:-translate-y-0.5 transition-all duration-200"
           >
             <p class="text-xs text-[#1f1f1f]/50 mb-2 uppercase tracking-wider">
               ไตรมาส 2
@@ -138,7 +138,7 @@ const years = Array.from(
 
           <!-- Q3 -->
           <div
-            class="bg-warm-ivory border border-block-gold p-5 hover:border-sunshine-700 hover:-translate-y-0.5 transition-all duration-200"
+            class="bg-warm-ivory p-5 hover:-translate-y-0.5 transition-all duration-200"
           >
             <p class="text-xs text-[#1f1f1f]/50 mb-2 uppercase tracking-wider">
               ไตรมาส 3
@@ -153,7 +153,7 @@ const years = Array.from(
 
           <!-- Q4 -->
           <div
-            class="bg-warm-ivory border border-block-gold p-5 hover:border-sunshine-700 hover:-translate-y-0.5 transition-all duration-200"
+            class="bg-warm-ivory p-5 hover:-translate-y-0.5 transition-all duration-200"
           >
             <p class="text-xs text-[#1f1f1f]/50 mb-2 uppercase tracking-wider">
               ไตรมาส 4

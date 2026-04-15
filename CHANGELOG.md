@@ -1,3 +1,9 @@
+## [1.0.6](https://github.com/pharmacist-sabot/medsup-dash/compare/v1.0.5...v1.0.6) (2026-04-15)
+
+### 🐛 Bug Fixes
+
+* **deps:** update dependency lucide-vue-next to ^0.577.0 ([#6](https://github.com/pharmacist-sabot/medsup-dash/issues/6)) ([6718032](https://github.com/pharmacist-sabot/medsup-dash/commit/6718032ac29d5f690e6deae76d45ae5312acb4f6))
+
 ## [1.0.5](https://github.com/pharmacist-sabot/medsup-dash/compare/v1.0.4...v1.0.5) (2026-04-15)
 
 ### 📦 Dependency Updates

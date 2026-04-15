@@ -1,3 +1,9 @@
+## [1.0.7](https://github.com/pharmacist-sabot/medsup-dash/compare/v1.0.6...v1.0.7) (2026-04-15)
+
+### 📦 Dependency Updates
+
+* **deps:** update dependency @types/node to v25 ([#9](https://github.com/pharmacist-sabot/medsup-dash/issues/9)) ([8fd6dd2](https://github.com/pharmacist-sabot/medsup-dash/commit/8fd6dd208428fbd53f52c2f790f1b87081c9da50))
+
 ## [1.0.6](https://github.com/pharmacist-sabot/medsup-dash/compare/v1.0.5...v1.0.6) (2026-04-15)
 
 ### 🐛 Bug Fixes

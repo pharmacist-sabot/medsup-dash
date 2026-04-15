@@ -1,3 +1,9 @@
+## [1.0.5](https://github.com/pharmacist-sabot/medsup-dash/compare/v1.0.4...v1.0.5) (2026-04-15)
+
+### 📦 Dependency Updates
+
+* **deps:** update actions/checkout action ([#7](https://github.com/pharmacist-sabot/medsup-dash/issues/7)) ([a954325](https://github.com/pharmacist-sabot/medsup-dash/commit/a954325dc9c30bad12d6eb4bd6ef8051ceba6b55))
+
 ## [1.0.4](https://github.com/pharmacist-sabot/medsup-dash/compare/v1.0.3...v1.0.4) (2026-04-15)
 
 ### 📦 Dependency Updates

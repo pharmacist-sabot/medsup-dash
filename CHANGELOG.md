@@ -1,3 +1,9 @@
+## [1.0.11](https://github.com/suradet-ps/medsup-dash/compare/v1.0.10...v1.0.11) (2026-04-23)
+
+### 🐛 Bug Fixes
+
+* **deps:** update dependency lucide-vue-next to v1 ([#15](https://github.com/suradet-ps/medsup-dash/issues/15)) ([f324a43](https://github.com/suradet-ps/medsup-dash/commit/f324a43c45dfd2dce7938efad548aa630fff2e15))
+
 ## [1.0.10](https://github.com/suradet-ps/medsup-dash/compare/v1.0.9...v1.0.10) (2026-04-23)
 
 ### 📦 Dependency Updates

@@ -1,3 +1,9 @@
+## [1.0.9](https://github.com/suradet-ps/medsup-dash/compare/v1.0.8...v1.0.9) (2026-04-23)
+
+### 📦 Dependency Updates
+
+* **deps:** update dependency jsdom to v29 ([#12](https://github.com/suradet-ps/medsup-dash/issues/12)) ([c2b183b](https://github.com/suradet-ps/medsup-dash/commit/c2b183b9b291dd8f0265d39e3879d99bacffd4d3))
+
 ## [1.0.8](https://github.com/suradet-ps/medsup-dash/compare/v1.0.7...v1.0.8) (2026-04-18)
 
 ### 📦 Dependency Updates

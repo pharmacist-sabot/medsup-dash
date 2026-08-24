@@ -1,176 +1,123 @@
-<div align="center">
-
 # MedSup Dash
 
-<p>
-  <a href="https://vuejs.org/"><img src="https://img.shields.io/badge/Vue-3.5+-4FC08D?logo=vue.js&logoColor=white" alt="Vue"></a>
-  <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-5.9+-3178C6?logo=typescript&logoColor=white" alt="TypeScript"></a>
-  <a href="https://vitejs.dev/"><img src="https://img.shields.io/badge/Vite-7.2+-646CFF?logo=vite&logoColor=white" alt="Vite"></a>
-  <a href="https://tailwindcss.com/"><img src="https://img.shields.io/badge/Tailwind_CSS-4.1+-06B6D4?logo=tailwindcss&logoColor=white" alt="Tailwind"></a>
-  <a href="https://bun.sh"><img src="https://img.shields.io/badge/Bun-1.1+-000000?logo=bun&logoColor=white" alt="Bun"></a>
-</p>
+Medical Support Dashboard — Sabot Hospital. Tracks the budget value of
+supported medication (`med_transactions`) per Thai fiscal year (ต.ค. – ก.ย.),
+with KPI cards, a quarterly report, and a recent-transactions table.
 
-<p>
-  <a href="https://github.com/suradet-ps/medsup-dash/actions/workflows/ci.yml"><img src="https://github.com/suradet-ps/medsup-dash/actions/workflows/ci.yml/badge.svg" alt="CI Status"></a>
-  <a href="https://github.com/suradet-ps/medsup-dash/blob/main/LICENSE"><img src="https://img.shields.io/github/license/suradet-ps/medsup-dash" alt="License"></a>
-  <a href="https://github.com/semantic-release/semantic-release"><img src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg" alt="Semantic Release"></a>
-  <a href="https://medsup-dash.vercel.app"><img src="https://img.shields.io/badge/Demo-Live-000000?logo=vercel&logoColor=white" alt="Live Demo"></a>
-</p>
+Rewritten from Vue 3 + `@supabase/supabase-js` to **Rust / Leptos 0.8 (CSR)**
+compiled to WebAssembly. The Supabase project itself is unchanged: the app
+talks to the same PostgREST (`/rest/v1`) and GoTrue (`/auth/v1`) HTTPS APIs.
 
-</div>
+## Stack
 
----
+| Concern        | Choice                                              |
+| -------------- | --------------------------------------------------- |
+| UI framework   | [Leptos](https://leptos.dev) 0.8, CSR only          |
+| Router         | `leptos_router`                                     |
+| Meta           | `leptos_meta`                                       |
+| HTTP           | `gloo-net` (hand-rolled PostgREST + GoTrue clients) |
+| Storage        | `gloo-storage` (session token persistence)          |
+| Time           | `chrono` with the `wasmbind` feature                |
+| Bundler / dev  | [Trunk](https://trunkrs.dev)                        |
+| Styling        | Tailwind v4, precompiled to `public/styles/main.css` |
 
-**MedSup Dash** is a modern, high-performance dashboard application designed for medical supply management. Built with the latest web technologies, it provides a seamless and responsive user experience for tracking key performance indicators (KPIs), visualizing data, and managing inventory.
-
-## Tech Stack
-
-This project leverages a cutting-edge stack to ensure speed, scalability, and developer experience:
-
-- **Framework:** [Vue 3](https://vuejs.org/) (Composition API)
-- **Build Tool:** [Vite 7](https://vitejs.dev/)
-- **Styling:** [Tailwind CSS 4](https://tailwindcss.com/)
-- **State Management:** [Pinia](https://pinia.vuejs.org/)
-- **Backend / Auth:** [Supabase](https://supabase.com/)
-- **Icons:** [Lucide Vue](https://lucide.dev/guide/packages/lucide-vue-next)
-- **Testing:** [Vitest](https://vitest.dev/)
-- **Linting:** [ESLint](https://eslint.org/) (with Antfu config)
-
-## Key Features
-
-- **Secure Authentication**: Robust login and session management powered by Supabase Auth.
-- **KPI Tracking**: specialized KPI cards for monitoring critical metrics at a glance.
-- **Fully Responsive**: Mobile-first design ensuring perfect usability across all devices.
-- **Blazing Fast**: Optimized build and HMR (Hot Module Replacement) with Vite.
-- **Type Safe**: Full TypeScript support for reliable and maintainable code.
-
-## Getting Started
-
-Follow these steps to set up the project locally.
-
-### Prerequisites
-
-- **Node.js** (Latest LTS recommended)
-- **Bun** (Recommended) or npm/yarn/pnpm
-
-### Installation
-
-1. **Clone the repository**
-
-   ```bash
-   git clone https://github.com/suradet-ps/medsup-dash.git
-   cd medsup-dash
-   ```
-
-2. **Install dependencies**
-
-   ```bash
-   bun install
-   # or
-   npm install
-   ```
-
-3. **Environment Setup**
-
-   Create a `.env` file in the root directory by copying the example:
-
-   ```bash
-   cp .env.example .env
-   ```
-
-   Update `.env` with your Supabase credentials:
-
-   ```env
-   VITE_SUPABASE_URL=your_supabase_url
-   VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
-   ```
-
-4. **Run the development server**
-
-   ```bash
-   bun dev
-   # or
-   npm run dev
-   ```
-
-   Open [http://localhost:5173](http://localhost:5173) in your browser.
-
-## Scripts
-
-| Script          | Description                            |
-| :-------------- | :------------------------------------- |
-| `dev`           | Start the development server           |
-| `build`         | Type-check and build for production    |
-| `preview`       | Preview the production build locally   |
-| `lint`          | Lint files with ESLint                 |
-| `lint:fix`      | Fix linting errors automatically       |
-| `test:unit`     | Run unit tests with Vitest             |
-| `test:coverage` | Run tests and generate coverage report |
-
-## Deployment
-
-This project is deployed to [Vercel](https://vercel.com) via the
-[Vercel GitHub App](https://vercel.com/docs/git/vercel-for-github), which
-provisions a Preview deployment for every pull request and a Production
-deployment for every push to `main` automatically — no GitHub Actions
-required.
-
-### One-time setup
-
-1. **Install the Vercel GitHub App** at
-   <https://github.com/apps/vercel> and grant it access to this repository.
-2. **Import the project** in the
-   [Vercel dashboard](https://vercel.com/new) by selecting this repository.
-3. **Configure the build settings** in the Vercel project:
-
-   | Setting          | Value                           |
-   | :--------------- | :------------------------------ |
-   | Install Command  | `bun install --frozen-lockfile` |
-   | Build Command    | `bun run build`                 |
-   | Output Directory | `dist`                          |
-   | Framework Preset | Vite                            |
-
-4. **Add the Supabase env vars** to the Vercel project (both Production and
-   Preview environments): `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`.
-
-After setup, every PR will automatically get a Preview URL, and every merge
-to `main` will deploy to Production.
-
-## Project Structure
+## Project layout
 
 ```text
-medsup-dash/
-├── .github/            # GitHub Actions & workflows
-├── src/
-│   ├── assets/         # Static assets and global styles
-│   ├── components/     # Reusable Vue components
-│   │   ├── common/     # Generic UI components
-│   │   └── dashboard/  # Dashboard-specific widgets
-│   ├── layouts/        # App layouts (Default, Blank)
-│   ├── router/         # Vue Router configuration
-│   ├── services/       # API services (Supabase)
-│   ├── stores/         # Pinia state stores
-│   ├── types/          # TypeScript type definitions
-│   ├── utils/          # Helper functions
-│   └── views/          # Page views (Auth, Dashboard)
-├── tests/              # Unit tests
-├── .env.example        # Environment variables template
-├── index.html          # Entry HTML file
-├── package.json        # Project dependencies and scripts
-├── tailwind.config.js  # Tailwind CSS configuration
-└── vite.config.ts      # Vite configuration
+src/
+├── lib.rs               # wasm-bindgen(start) entry; installs stores inside mount owner
+├── app.rs               # <App/>: meta + <Router> + authed/unauthed shell split
+├── core/                # framework-agnostic logic
+│   ├── error.rs         # AppError / AppResult
+│   ├── postgrest.rs     # PostgREST query builder (select/gte/lte/order/get)
+│   ├── auth.rs          # GoTrue wrappers (sign_in_with_password/user/logout)
+│   ├── supabase.rs      # client config (env vars → localStorage fallback) + token
+│   ├── time.rs          # Thai fiscal-year helpers (chrono wasmbind)
+│   ├── utils.rs         # THB/Thai-date formatters + DOM value helpers (+ tests)
+│   └── types/database.rs# MedTransaction row struct
+├── stores/              # Pinia stores → OnceLock singletons of RwSignals/Memos
+│   ├── auth.rs
+│   └── transactions.rs
+├── components/
+│   ├── icons.rs         # inline Lucide SVGs
+│   ├── common/          # BaseButton, AppNavbar
+│   └── dashboard/       # KpiCard
+├── layouts/             # DefaultLayout (navbar+footer), BlankLayout
+└── views/               # LoginView, OverviewView, NotFoundView
 ```
 
-## Contributing
+## Prerequisites
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+- Rust stable with the `wasm32-unknown-unknown` target:
+  ```sh
+  rustup target add wasm32-unknown-unknown
+  ```
+- [Trunk](https://trunkrs.dev):
+  ```sh
+  cargo install trunk --locked
+  ```
 
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+## Configuration
 
-## License
+Supabase credentials are read in this order (see `src/core/supabase.rs`):
 
-This project is licensed under the [MIT License](LICENSE).
+1. Build-time env vars — baked into the WASM via `option_env!`:
+   - `SUPABASE_URL`
+   - `SUPABASE_ANON_KEY`
+2. Runtime `localStorage` fallback keys (no rebuild needed):
+   - `medsup_supabase_url`
+   - `medsup_supabase_anon`
+
+Copy `.env.example` and export the values before building for production.
+
+## Development
+
+```sh
+trunk serve            # http://127.0.0.1:3000, SPA fallback enabled
+```
+
+## Quality gates
+
+```sh
+cargo fmt --all --check
+cargo clippy --target wasm32-unknown-unknown -- -D warnings
+cargo test --lib
+trunk build --release
+```
+
+## Styling
+
+Tailwind v4 classes live directly in the Rust `view!` markup. The compiled CSS
+is committed at `public/styles/main.css`, so builds require **no Node
+toolchain**. After adding/changing class names, regenerate it once:
+
+```sh
+bunx @tailwindcss/cli -i ./tailwind.input.css -o ./public/styles/main.css --minify
+```
+
+Design tokens (Mistral palette), golden shadow utilities, base styles, and the
+custom scrollbar are defined in `tailwind.input.css`.
+
+## Deployment (Vercel)
+
+`vercel.json` builds with Trunk and serves `dist/` as a static SPA:
+
+- catch-all rewrite `/(.*) -> /index.html` for deep links,
+- CSP including `'wasm-unsafe-eval'` (required to instantiate WASM),
+- `.wasm` served as `application/wasm` with immutable caching.
+
+Set `SUPABASE_URL` / `SUPABASE_ANON_KEY` as build environment variables so
+they get baked into the WASM bundle.
+
+## Migration notes (Vue → Leptos)
+
+- Auth session persistence: the GoTrue access token is stored in
+  `localStorage` (`medsup_supabase_token`) and revalidated against
+  `GET /auth/v1/user` on startup — equivalent to supabase-js
+  `persistSession`.
+- Realtime: supabase-js realtime channels were replaced by a 30-second poll
+  (`subscribe_refresh`) that refetches the selected fiscal year, matching the
+  original debounced-refetch behaviour without a websocket dependency.
+- Route guard (`beforeEach`) became nested `<Show>`s around two route trees;
+  `/login ↔ /` redirects mirror the old guard rules.
+- Fiscal year selector defaults to the current Thai fiscal year (Oct–Sep).

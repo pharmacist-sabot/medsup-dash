@@ -1,3 +1,5 @@
+## [1.1.11](https://github.com/suradet-ps/medsup-dash/compare/v1.1.10...v1.1.11) (2026-08-24)
+
 ## [1.1.10](https://github.com/suradet-ps/medsup-dash/compare/v1.1.9...v1.1.10) (2026-08-21)
 
 ## [1.1.9](https://github.com/suradet-ps/medsup-dash/compare/v1.1.8...v1.1.9) (2026-08-10)

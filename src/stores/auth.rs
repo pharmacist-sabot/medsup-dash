@@ -49,7 +49,8 @@ impl AuthState {
                 Ok(Some(user)) => {
                     self.email.set(user.email.filter(|e| !e.is_empty()));
                 }
-                _ => SupabaseClient::persist_token(None),
+                Ok(None) => SupabaseClient::persist_token(None),
+                Err(err) => log::warn!("Session check failed, keeping persisted token: {err}"),
             },
             Err(err) => log::warn!("Supabase config unavailable during init: {err}"),
         }

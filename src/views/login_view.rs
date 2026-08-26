@@ -134,7 +134,7 @@ pub fn LoginView() -> impl IntoView {
 
             // Bottom caption
             <p class="text-center text-xs text-mistral-black/50 mt-4">
-                "Medical Support Dashboard — Sabot Hospital"
+                "Medical Support Dashboard - Sabot Hospital"
             </p>
         </main>
     }

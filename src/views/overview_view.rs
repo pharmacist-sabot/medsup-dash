@@ -165,22 +165,22 @@ fn QuarterlyReport(
             <div class="p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 <QuarterCard
                     label="ไตรมาส 1"
-                    range="ต.ค. – ธ.ค."
+                    range="ต.ค. - ธ.ค."
                     value=Signal::derive(move || format_currency(quarterly.get().q1))
                 />
                 <QuarterCard
                     label="ไตรมาส 2"
-                    range="ม.ค. – มี.ค."
+                    range="ม.ค. - มี.ค."
                     value=Signal::derive(move || format_currency(quarterly.get().q2))
                 />
                 <QuarterCard
                     label="ไตรมาส 3"
-                    range="เม.ย. – มิ.ย."
+                    range="เม.ย. - มิ.ย."
                     value=Signal::derive(move || format_currency(quarterly.get().q3))
                 />
                 <QuarterCard
                     label="ไตรมาส 4"
-                    range="ก.ค. – ก.ย."
+                    range="ก.ค. - ก.ย."
                     value=Signal::derive(move || format_currency(quarterly.get().q4))
                 />
             </div>

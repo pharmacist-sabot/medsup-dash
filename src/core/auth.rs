@@ -79,7 +79,7 @@ impl<'a> SupabaseAuth<'a> {
         decode_json(response).await
     }
 
-    /// `GET /auth/v1/user` — restores the session from a persisted token.
+    /// `GET /auth/v1/user` - restores the session from a persisted token.
     /// Returns `None` when the token is missing or rejected (401/403).
     ///
     /// # Errors

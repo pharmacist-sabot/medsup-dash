@@ -1,4 +1,4 @@
-//! medsup-dash — Medical Support Dashboard (Leptos CSR + Supabase).
+//! medsup-dash - Medical Support Dashboard (Leptos CSR + Supabase).
 //!
 //! Entry point mounts the app and installs store singletons **inside** the
 //! mount-root owner so their signals are never disposed.

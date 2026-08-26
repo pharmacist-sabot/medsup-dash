@@ -67,10 +67,10 @@ fn quarterly_summary_of(transactions: &[MedTransaction]) -> QuarterlySummary {
             .unwrap_or(0);
         let value = t.drug_value;
         match month {
-            10..=12 => summary.q1 += value, // ต.ค. – ธ.ค.
-            1..=3 => summary.q2 += value,   // ม.ค. – มี.ค.
-            4..=6 => summary.q3 += value,   // เม.ย. – มิ.ย.
-            7..=9 => summary.q4 += value,   // ก.ค. – ก.ย.
+            10..=12 => summary.q1 += value, // ต.ค. - ธ.ค.
+            1..=3 => summary.q2 += value,   // ม.ค. - มี.ค.
+            4..=6 => summary.q3 += value,   // เม.ย. - มิ.ย.
+            7..=9 => summary.q4 += value,   // ก.ค. - ก.ย.
             _ => {}
         }
     }
@@ -95,7 +95,7 @@ pub struct TransactionsState {
 impl TransactionsState {
     fn new() -> Self {
         let transactions = RwSignal::new(Vec::new());
-        let loading = RwSignal::new(false);
+        let loading = RwSignal::new(true);
         let error = RwSignal::new(None);
         let selected_fiscal_year = RwSignal::new(time::current_fiscal_year());
 

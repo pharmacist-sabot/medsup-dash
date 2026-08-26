@@ -1,52 +1,42 @@
 # MedSup Dash
 
-Medical Support Dashboard — Sabot Hospital. Tracks the budget value of
-supported medication (`med_transactions`) per Thai fiscal year (ต.ค. – ก.ย.),
+[![CI](https://img.shields.io/github/actions/workflow/status/suradet-ps/medsup-dash/ci.yml?branch=main&label=CI)](https://github.com/suradet-ps/medsup-dash/actions/workflows/ci.yml)
+[![CodeQL](https://img.shields.io/github/actions/workflow/status/suradet-ps/medsup-dash/codeql.yml?branch=main&label=CodeQL)](https://github.com/suradet-ps/medsup-dash/actions/workflows/codeql.yml)
+[![Release](https://img.shields.io/github/v/release/suradet-ps/medsup-dash)](https://github.com/suradet-ps/medsup-dash/releases)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+Medical Support Dashboard - Sabot Hospital. Tracks the budget value of
+supported medication (`med_transactions`) per Thai fiscal year (ต.ค. - ก.ย.),
 with KPI cards, a quarterly report, and a recent-transactions table.
 
 Rewritten from Vue 3 + `@supabase/supabase-js` to **Rust / Leptos 0.8 (CSR)**
 compiled to WebAssembly. The Supabase project itself is unchanged: the app
 talks to the same PostgREST (`/rest/v1`) and GoTrue (`/auth/v1`) HTTPS APIs.
 
-## Stack
+## Features
 
-| Concern        | Choice                                              |
-| -------------- | --------------------------------------------------- |
-| UI framework   | [Leptos](https://leptos.dev) 0.8, CSR only          |
-| Router         | `leptos_router`                                     |
-| Meta           | `leptos_meta`                                       |
-| HTTP           | `gloo-net` (hand-rolled PostgREST + GoTrue clients) |
-| Storage        | `gloo-storage` (session token persistence)          |
-| Time           | `chrono` with the `wasmbind` feature                |
-| Bundler / dev  | [Trunk](https://trunkrs.dev)                        |
+- KPI cards with quarterly aggregation over Thai fiscal quarters
+- Recent-transactions table with live refresh polling
+- Email/password auth via Supabase GoTrue with persistent sessions
+- Fully client-side WASM build, no Node toolchain required at runtime
+- Static SPA deployment on Vercel
+
+## Tech Stack
+
+| Concern        | Choice                                               |
+| -------------- | ---------------------------------------------------- |
+| UI framework   | [Leptos](https://leptos.dev) 0.8, CSR only           |
+| Router         | `leptos_router`                                      |
+| Meta           | `leptos_meta`                                        |
+| HTTP           | `gloo-net` (hand-rolled PostgREST + GoTrue clients)  |
+| Storage        | `gloo-storage` (session token persistence)           |
+| Time           | `chrono` with the `wasmbind` feature                 |
+| Bundler / dev  | [Trunk](https://trunkrs.dev)                         |
 | Styling        | Tailwind v4, precompiled to `public/styles/main.css` |
 
-## Project layout
+## Getting Started
 
-```text
-src/
-├── lib.rs               # wasm-bindgen(start) entry; installs stores inside mount owner
-├── app.rs               # <App/>: meta + <Router> + authed/unauthed shell split
-├── core/                # framework-agnostic logic
-│   ├── error.rs         # AppError / AppResult
-│   ├── postgrest.rs     # PostgREST query builder (select/gte/lte/order/get)
-│   ├── auth.rs          # GoTrue wrappers (sign_in_with_password/user/logout)
-│   ├── supabase.rs      # client config (env vars → localStorage fallback) + token
-│   ├── time.rs          # Thai fiscal-year helpers (chrono wasmbind)
-│   ├── utils.rs         # THB/Thai-date formatters + DOM value helpers (+ tests)
-│   └── types/database.rs# MedTransaction row struct
-├── stores/              # Pinia stores → OnceLock singletons of RwSignals/Memos
-│   ├── auth.rs
-│   └── transactions.rs
-├── components/
-│   ├── icons.rs         # inline Lucide SVGs
-│   ├── common/          # BaseButton, AppNavbar
-│   └── dashboard/       # KpiCard
-├── layouts/             # DefaultLayout (navbar+footer), BlankLayout
-└── views/               # LoginView, OverviewView, NotFoundView
-```
-
-## Prerequisites
+### Prerequisites
 
 - Rust stable with the `wasm32-unknown-unknown` target:
   ```sh
@@ -57,11 +47,11 @@ src/
   cargo install trunk --locked
   ```
 
-## Configuration
+### Configuration
 
 Supabase credentials are read in this order (see `src/core/supabase.rs`):
 
-1. Build-time env vars — baked into the WASM via `option_env!`:
+1. Build-time env vars - baked into the WASM via `option_env!`:
    - `SUPABASE_URL`
    - `SUPABASE_ANON_KEY`
 2. Runtime `localStorage` fallback keys (no rebuild needed):
@@ -70,13 +60,13 @@ Supabase credentials are read in this order (see `src/core/supabase.rs`):
 
 Copy `.env.example` and export the values before building for production.
 
-## Development
+### Development
 
 ```sh
 trunk serve            # http://127.0.0.1:3000, SPA fallback enabled
 ```
 
-## Quality gates
+## Quality Gates
 
 ```sh
 cargo fmt --all --check
@@ -109,15 +99,19 @@ custom scrollbar are defined in `tailwind.input.css`.
 Set `SUPABASE_URL` / `SUPABASE_ANON_KEY` as build environment variables so
 they get baked into the WASM bundle.
 
-## Migration notes (Vue → Leptos)
+## Migration Notes (Vue → Leptos)
 
 - Auth session persistence: the GoTrue access token is stored in
   `localStorage` (`medsup_supabase_token`) and revalidated against
-  `GET /auth/v1/user` on startup — equivalent to supabase-js
+  `GET /auth/v1/user` on startup - equivalent to supabase-js
   `persistSession`.
 - Realtime: supabase-js realtime channels were replaced by a 30-second poll
   (`subscribe_refresh`) that refetches the selected fiscal year, matching the
   original debounced-refetch behaviour without a websocket dependency.
 - Route guard (`beforeEach`) became nested `<Show>`s around two route trees;
   `/login ↔ /` redirects mirror the old guard rules.
-- Fiscal year selector defaults to the current Thai fiscal year (Oct–Sep).
+- Fiscal year selector defaults to the current Thai fiscal year (Oct-Sep).
+
+## License
+
+Distributed under the [MIT License](LICENSE).

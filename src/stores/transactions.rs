@@ -254,7 +254,7 @@ mod tests {
 
     fn row(date: &str, value: f64) -> MedTransaction {
         MedTransaction {
-            id: 1,
+            id: "1".to_string(),
             created_at: None,
             transaction_date: date.to_string(),
             bill_number: None,

@@ -1,10 +1,10 @@
 use serde::{Deserialize, Serialize};
 
-/// Row shape of the `med_transactions` table (`bigint id`, date strings in
+/// Row shape of the `med_transactions` table (`uuid id`, date strings in
 /// `YYYY-MM-DD`). Field names stay `snake_case` to match `PostgREST` columns.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct MedTransaction {
-    pub id: i64,
+    pub id: String,
     #[serde(default)]
     pub created_at: Option<String>,
     pub transaction_date: String,

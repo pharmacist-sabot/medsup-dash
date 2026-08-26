@@ -237,7 +237,7 @@ fn RecentTable(recent: leptos::prelude::Memo<Vec<MedTransaction>>) -> impl IntoV
                     <tbody class="divide-y divide-block-gold">
                         <For
                             each=move || recent.get()
-                            key=|item| item.id
+                            key=|item| item.id.clone()
                             children=move |item| {
                                 view! {
                                     <tr class="hover:bg-warm-ivory transition-colors duration-150">

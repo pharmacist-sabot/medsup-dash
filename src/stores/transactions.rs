@@ -115,13 +115,12 @@ impl TransactionsState {
             }
         });
         let recent_transactions = Memo::new(move |_| {
-            let mut rows = transactions.get_untracked();
+            let mut rows = transactions.get();
             rows.sort_by(|a, b| b.transaction_date.cmp(&a.transaction_date));
             rows.truncate(10);
             rows
         });
-        let quarterly_summary =
-            Memo::new(move |_| quarterly_summary_of(&transactions.get_untracked()));
+        let quarterly_summary = Memo::new(move |_| quarterly_summary_of(&transactions.get()));
 
         Self {
             transactions,
@@ -249,7 +248,9 @@ impl TransactionsState {
 
 #[cfg(test)]
 mod tests {
-    use super::{QuarterlySummary, quarterly_summary_of};
+    use leptos::prelude::{Get, Set};
+
+    use super::{QuarterlySummary, TransactionsState, quarterly_summary_of};
     use crate::core::types::database::MedTransaction;
 
     fn row(date: &str, value: f64) -> MedTransaction {
@@ -262,6 +263,33 @@ mod tests {
             drug_value: value,
             note: None,
         }
+    }
+
+    #[test]
+    fn memos_track_transaction_updates() {
+        let state = TransactionsState::new();
+        assert_eq!(
+            state.recent_transactions().get(),
+            Vec::<MedTransaction>::new()
+        );
+        assert_eq!(state.quarterly_summary().get(), QuarterlySummary::default());
+
+        state.transactions.set(vec![
+            row("2025-01-15", 200.0),
+            row("2025-03-01", 100.0),
+            row("2025-07-20", 24.5),
+        ]);
+
+        assert_eq!(
+            state.quarterly_summary().get(),
+            QuarterlySummary {
+                q1: 0.0,
+                q2: 300.0,
+                q3: 0.0,
+                q4: 24.5
+            }
+        );
+        assert_eq!(state.recent_transactions().get().len(), 3);
     }
 
     #[test]

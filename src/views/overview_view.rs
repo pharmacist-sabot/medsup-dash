@@ -26,6 +26,7 @@ pub fn OverviewView() -> impl IntoView {
     let loading = store.loading;
     let error = store.error;
     let selected_year = store.selected_fiscal_year;
+    let transactions = store.transactions;
 
     let years = selectable_fiscal_years();
 
@@ -66,6 +67,9 @@ pub fn OverviewView() -> impl IntoView {
 
                 // Fiscal Year Selector
                 <div class="flex items-center gap-3 shrink-0">
+                    <Show when=move || loading.get()>
+                        <Icon icon=IconKind::Loader2 class="w-4 h-4 animate-spin text-sunshine-700" aria_hidden=true />
+                    </Show>
                     <label for="fiscal-year" class="text-xs text-mistral-black/50 uppercase tracking-wider whitespace-nowrap">
                         "ปีงบประมาณ"
                     </label>
@@ -92,8 +96,10 @@ pub fn OverviewView() -> impl IntoView {
             </div>
 
             // Loading State (v-if) / Dashboard Body (v-else)
+            // Full-page spinner only while there is nothing to show yet;
+            // background refreshes update the content in place instead.
             <Show
-                when=move || loading.get()
+                when=move || loading.get() && transactions.with(Vec::is_empty)
                 fallback=move || {
                     view! {
                         <>
